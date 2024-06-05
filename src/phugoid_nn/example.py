@@ -12,4 +12,6 @@ import numpy as np
 
 
 def phugoid():
+    print("--------------------------------")
     print("---### PHUGOID NN LIBRARY ###---")
+    print("--------------------------------")
