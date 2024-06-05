@@ -6,14 +6,14 @@ setup(
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     install_requires=[
-        "numpy",
+        "numpy"
     ],
     author="Alec Portelli",
     author_email="alecportelli@icloud.com",
     description="Phugoid Neural Network Library",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url="https://github.com/yourusername/your_project_name",
+    url="https://github.com/alecdportelli/NNLib",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

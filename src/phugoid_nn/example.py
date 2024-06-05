@@ -11,5 +11,5 @@ License: MIT
 import numpy as np
 
 
-if __name__ == "__main__":
+def phugoid():
     print("---### PHUGOID NN LIBRARY ###---")
