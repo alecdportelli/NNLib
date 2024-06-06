@@ -23,7 +23,7 @@ loss_activation = SLCEE()
 
 # Create the optimizer
 # NOTE: Default learning rate is 1
-optimizer = SGD(learning_rate=1, decay=1e-3)
+optimizer = SGD(learning_rate=1, decay=1e-3, momentum=0.9)
 
 # Set the number of epochs
 NUM_EPOCHS = 10000
@@ -54,7 +54,6 @@ for epoch in range(NUM_EPOCHS):
 
     if len(y.shape) == 2:
         y = np.argmax(y, axis=1)
-
     accuracy = np.mean(predictions==y)
 
     if epoch % 100 == 0:
