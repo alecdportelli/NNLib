@@ -54,6 +54,6 @@ class ReLU(Activation):
         Returns:
         - numpy.ndarray: Gradients of the loss function with respect to the input of the ReLU activation.
         """
-        self.derivatives = derivatives.copy()
-        self.derivatives[self.derivatives <= 0] = 0
+        self.derivative_inputs = derivatives.copy()
+        self.derivative_inputs[self.inputs <= 0] = 0
 
