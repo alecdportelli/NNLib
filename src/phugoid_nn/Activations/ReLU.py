@@ -42,6 +42,7 @@ class ReLU(Activation):
         """
         self.inputs = inputs
         self.output = np.maximum(0, inputs)
+        return self.output
 
     def backward(self, derivatives):
         """

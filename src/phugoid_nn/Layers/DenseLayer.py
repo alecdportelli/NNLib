@@ -41,6 +41,11 @@ class Dense(Layer):
             raise ValueError(f"Unsupported activation type: {self.activation_type}")
 
     def forward(self, inputs:np.ndarray):
+        self.inputs = inputs
         self.output = np.dot(inputs, self.weights) + self.biases
-
         return self.output
+    
+    def backward(self, derivatives:np.ndarray):
+        self.derivative_weights = np.dot(self.inputs.T, derivatives)
+        self.derivative_biases = np.sum(derivatives, axis=0, keepdims=True)
+        self.derivative_inputs = np.dot(derivatives, self.weights.T)
