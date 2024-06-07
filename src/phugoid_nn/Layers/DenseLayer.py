@@ -18,8 +18,19 @@ from ..Activations.Sigmoid import Sigmoid
 
 
 class Dense(Layer):
-    def __init__(self, num_inputs:int=1, num_neurons:int=1, activation:str = ""):
+    def __init__(self, num_inputs:int=1, num_neurons:int=1, activation:str = "", 
+                 weight_regularizer_L1=0, weight_regularizer_L2=0, 
+                 bias_regularizer_L1=0, bias_regularizer_L2=0):
         super().__init__(num_neurons)
+
+        self.num_neurons = num_neurons
+        self.num_inputs = num_inputs
+
+        self.weight_regularizer_L1 = weight_regularizer_L1
+        self.weight_regularizer_L2 = weight_regularizer_L2
+
+        self.bias_regularizer_L1 = bias_regularizer_L1
+        self.bias_regularizer_L2 = bias_regularizer_L2
 
         # Set the weights
         # The 0.01 is to keep numbers in between -1 and 1
