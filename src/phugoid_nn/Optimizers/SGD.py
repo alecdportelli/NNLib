@@ -10,12 +10,13 @@ License: MIT
 
 import numpy as np
 
+from .OptimizerBase import OptimizerBase
 
-class SGD:
+
+class SGD(OptimizerBase):
     def __init__(self, learning_rate:float=1., decay=0., momentum=0.):
-        self.learning_rate = learning_rate
+        super().__init__(learning_rate, decay)
         self.current_learning_rate = learning_rate
-        self.decay = decay
         self.iterations = 0
         self.momentum = momentum
 

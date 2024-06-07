@@ -8,6 +8,7 @@ from src.phugoid_nn.Layers.DenseLayer import Dense
 from src.phugoid_nn.Activations.ReLU import ReLU
 from src.phugoid_nn.Activations.Softmax_Loss_CCE import Softmax_Loss_CCE as SLCEE
 from src.phugoid_nn.Optimizers.SGD import SGD
+from src.phugoid_nn.Optimizers.Adagrad import Adagrad
 
 
 # Create the dataset
@@ -23,10 +24,10 @@ loss_activation = SLCEE()
 
 # Create the optimizer
 # NOTE: Default learning rate is 1
-optimizer = SGD(learning_rate=1, decay=1e-3, momentum=0.9)
+optimizer = Adagrad(decay=1e-4)
 
 # Set the number of epochs
-NUM_EPOCHS = 10000
+NUM_EPOCHS = 10001
 
 # Lists for plotting 
 epochs = []
