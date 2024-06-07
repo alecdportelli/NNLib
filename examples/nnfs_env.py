@@ -76,9 +76,9 @@ for epoch in range(NUM_EPOCHS):
     if epoch % 100 == 0:
         print(f"Epoch: {epoch} ---- Loss:" 
               f"{loss:.3f} ---- "
-              f"Data loss: {data_loss}"
-              f"Reg loss: {loss_regularization:.3f}"
-              f"Accuracy: {accuracy:.3f}"
+              f"Data loss: {data_loss} ---- "
+              f"Reg loss: {loss_regularization:.3f} ---- "
+              f"Accuracy: {accuracy:.3f} ---- "
               f"--- LR: {optimizer.current_learning_rate}")
     
     # Append for plotting
