@@ -59,4 +59,25 @@ class Dense(Layer):
     def backward(self, derivatives:np.ndarray):
         self.derivative_weights = np.dot(self.inputs.T, derivatives)
         self.derivative_biases = np.sum(derivatives, axis=0, keepdims=True)
+
+        if self.weight_regularizer_L1 > 0:
+            derivative_L1 = np.ones_like(self.weights)
+            derivative_L1[self.weights < 0] = -1
+            self.derivative_weights += self.weight_regularizer_L1 * \
+                derivative_L1
+            
+        if self.weight_regularizer_L2 > 0:
+            self.derivative_weights += 2 * self.weight_regularizer_L2 * \
+                self.weights
+            
+        if self.bias_regularizer_L1 > 0:
+            derivative_L1 = np.ones_like(self.biases)
+            derivative_L1[self.biases < 0] = -1
+            self.derivative_biases += self.bias_regularizer_L1 * \
+                self.derivative_biases
+            
+        if self.bias_regularizer_L2 > 0:
+            self.derivative_biases += 2 * self.bias_regularizer_L2 * \
+                self.biases
+
         self.derivative_inputs = np.dot(derivatives, self.weights.T)
