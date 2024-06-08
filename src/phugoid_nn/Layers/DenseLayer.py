@@ -1,5 +1,5 @@
 """
-example.py
+DenseLayer.py
 
 Description: Dense layer class
 

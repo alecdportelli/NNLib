@@ -20,7 +20,7 @@ class Layer:
     - biases (numpy.ndarray): The biases associated with the neurons in the layer.
     """
 
-    def __init__(self, num_neurons: int):
+    def __init__(self, num_neurons: int = 0):
         """
         Initializes the LayerBase object with the specified number of neurons.
 
