@@ -5,6 +5,7 @@ from nnfs.datasets import spiral_data
 nnfs.init()
 
 from src.phugoid_nn.Layers.DenseLayer import Dense
+from src.phugoid_nn.Layers.Dropout import Dropout
 from src.phugoid_nn.Activations.ReLU import ReLU
 from src.phugoid_nn.Activations.Softmax_Loss_CCE import Softmax_Loss_CCE as SLCEE
 from src.phugoid_nn.Optimizers.SGD import SGD
@@ -24,6 +25,10 @@ dense1 = Dense(
     weight_regularizer_L2=5e-4, 
     bias_regularizer_L2=5e-4
     )
+
+# Dropout layer for first dense
+dropout = Dropout(rate=0.1)
+
 dense2 = Dense(num_inputs=64, num_neurons=3, activation="relu")
 
 # Create the activation functions
@@ -35,7 +40,7 @@ loss_activation = SLCEE()
 optimizer = Adam(learning_rate=0.05, decay=5e-7)
 
 # Set the number of epochs
-NUM_EPOCHS = 80001
+NUM_EPOCHS = 10001
 
 # Lists for plotting 
 epochs = []
@@ -51,8 +56,11 @@ for epoch in range(NUM_EPOCHS):
     # Activation function from first layer
     activation1.forward(dense1.output)
 
+    # Activate dropout
+    dropout.forward(activation1.output)
+
     # Repeat for second layer 
-    dense2.forward(activation1.output)
+    dense2.forward(dropout.output)
 
     # Calculate loss from second layer and 'y' which
     # is the acutal data from the function
@@ -90,7 +98,8 @@ for epoch in range(NUM_EPOCHS):
     # Perform the back propogation
     loss_activation.backward(loss_activation.output, y)
     dense2.backward(loss_activation.derivative_inputs)
-    activation1.backward(dense2.derivative_inputs)
+    dropout.backward(dense2.derivative_inputs)
+    activation1.backward(dropout.derivative_inputs)
     dense1.backward(activation1.derivative_inputs)
 
     # Use optimizer to update weights and biases

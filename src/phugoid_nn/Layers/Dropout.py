@@ -28,5 +28,5 @@ class Dropout(Layer):
                            size=inputs.shape) / self.rate
         self.output = inputs * self.binary_mask
 
-    def backward(self, dvalues):
-        self.dinputs = dvalues * self.binary_mask
+    def backward(self, derivatives):
+        self.derivative_inputs = derivatives * self.binary_mask
