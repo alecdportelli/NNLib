@@ -18,5 +18,11 @@ class Sigmoid(Activation):
         super().__init__()
 
     def forward(self, inputs):
-        return 1 / (1 + np.exp(-inputs))
+        self.inputs = inputs
+        self.output = 1 / (1 + np.exp(-inputs))
+        return self.output
+    
+    def backward(self, derivatives):
+        self.derivative_inputs = derivatives * \
+            (1 - self.output) * self.output
     
