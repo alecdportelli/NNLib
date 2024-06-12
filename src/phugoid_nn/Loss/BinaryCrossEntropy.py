@@ -29,6 +29,6 @@ class BinaryCrossEntropy(Loss):
 
         clipped_dvalues = np.clip(dvalues, 1e-7, 1 - 1e-7)
 
-        self.dinputs = -(y_true / clipped_dvalues -
+        self.derivative_inputs = -(y_true / clipped_dvalues -
                          (1 - y_true) / (1 - clipped_dvalues)) / outputs
-        self.dinputs = self.dinputs / samples
+        self.derivative_inputs = self.derivative_inputs / samples

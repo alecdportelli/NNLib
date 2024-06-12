@@ -18,7 +18,7 @@ from ..Activations.Sigmoid import Sigmoid
 
 
 class Dense(Layer):
-    def __init__(self, num_inputs:int=1, num_neurons:int=1, activation:str = "", 
+    def __init__(self, num_inputs:int=1, num_neurons:int=1, 
                  weight_regularizer_L1=0, weight_regularizer_L2=0, 
                  bias_regularizer_L1=0, bias_regularizer_L2=0):
         super().__init__(num_neurons)
@@ -33,23 +33,9 @@ class Dense(Layer):
         self.bias_regularizer_L2 = bias_regularizer_L2
 
         # Set the weights
-        # The 0.01 is to keep numbers in between -1 and 1
+        # The 0.1 is to keep numbers in between -1 and 1
         # assuming a NumPy random Gaussian distrobution
-        self.weights = 0.01 * np.random.randn(num_inputs, num_neurons)
-
-        # Turn the string into all lowercase for easier parsing
-        # and make it set to an attribute 
-        self.activation_type = activation.lower()
-
-        # Set the activation type 
-        if self.activation_type == "relu":
-            self.activation = ReLU()
-        elif self.activation_type == "tanh":
-            self.activation = Tanh()
-        elif self.activation_type == "sigmoid":
-            self.activation = Sigmoid()
-        else:
-            raise ValueError(f"Unsupported activation type: {self.activation_type}")
+        self.weights = 0.1 * np.random.randn(num_inputs, num_neurons)
 
     def forward(self, inputs:np.ndarray):
         self.inputs = inputs
